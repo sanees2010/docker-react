@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  -docker build -t sanees2010 -f Dockerfile.dev .
+
+script:
+  - docker run sanees2010 npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "dockerapp"
+  env: "Dockerapp-env"
+  bucket_name: "elasticbeanstalk-us-east-1-430723739319"
+  bucket_path: "dockerapp"
+  on:
+   branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+   secure: "$AWS_SECRET_KEY"
