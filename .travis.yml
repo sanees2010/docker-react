@@ -7,6 +7,7 @@ before_install:
 
 script:
   - docker run sanees2010 npm run test -- --coverage
+  - docker run sanees2010  npm run ci_test -- --coverage
 
 deploy:
   provider: elasticbeanstalk
