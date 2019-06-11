@@ -6,7 +6,6 @@ before_install:
   - docker build -t sanees2010 -f Dockerfile.dev .
 
 script:
-  - docker run sanees2010 npm run test -- --coverage
   - docker run -e CI=true sanees2010  npm run test -- --watchAll=false
 deploy:
   provider: elasticbeanstalk
